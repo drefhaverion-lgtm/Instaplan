@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="Calendario editoriale Instagram personale">
+
+
+<title>InstaPlan</title>
+<style>
+:root{
+--bg:#0b0d12;--panel:#12161e;--panel2:#181d27;--line:#2a313e;--text:#f4f6fa;
+--muted:#929aaa;--accent:#8879ff;--accent2:#ff4f9a;--green:#52d68b;--blue:#5ca8ff;--yellow:#f1c75c;--danger:#ff6676;
+}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+body{min-height:100svh}button,input,select,textarea{font:inherit}button{cursor:pointer}
+#app{max-width:900px;margin:auto;min-height:100svh;padding-bottom:86px}.topbar{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#0b0d12ee;backdrop-filter:blur(12px);border-bottom:1px solid #171b24}
+.brand{display:flex;gap:10px;align-items:center}.brandmark{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:900}.brand h1{font-size:18px;margin:0}.brand span{font-size:11px;color:var(--muted)}
+.round,.iconBtn{border:1px solid var(--line);background:var(--panel);color:var(--text)}.round{width:40px;height:40px;border-radius:13px;font-size:24px;line-height:1}
+main{padding:16px}.view{display:none}.view.active{display:block}.hero{display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(135deg,#1a1730,#12151d);border:1px solid #302b50;border-radius:20px;padding:17px;margin-bottom:12px}
+.eyebrow{font-size:9px;letter-spacing:.17em;color:var(--accent);font-weight:800}.hero h2,.pageHead h2{font-size:23px;margin:3px 0 3px}.hero p{margin:0;color:var(--muted);font-size:12px}
+.primary{border:0;background:linear-gradient(135deg,var(--accent),#6556ff);color:#fff;font-weight:800;padding:11px 14px;border-radius:12px}.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 12px;border-radius:11px}.textBtn{border:0;background:none;color:#b9b2ff;font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0 20px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px}.stat span{font-size:10px;color:var(--muted)}.stat strong{display:block;font-size:22px;margin-top:3px}
+.sectionHead,.pageHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.sectionHead{margin:14px 0 8px}.sectionHead h3{font-size:14px;margin:0}.muted{color:var(--muted);font-size:12px}
+.postCard,.ideaCard,.settingsCard{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px;margin:8px 0}.postCard{display:flex;align-items:center;gap:10px}.postDot{width:9px;height:42px;border-radius:8px;background:var(--accent)}.postMain{flex:1;min-width:0}.postTitle{font-weight:800;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.postMeta{font-size:10px;color:var(--muted);margin-top:3px}.status{font-size:9px;padding:5px 7px;border-radius:999px;background:#222735;color:#d8ddeb}
+.ideaCard{display:flex;gap:8px;align-items:flex-start}.ideaText{flex:1;font-size:12px;line-height:1.4}.ideaActions button{border:0;background:none;color:var(--muted);font-size:13px}
+.pageHead{margin-bottom:14px}.navBtns{display:flex;gap:7px}.iconBtn{width:36px;height:36px;border-radius:10px}.filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px}.chip{white-space:nowrap;border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 10px;border-radius:999px;font-size:11px}.chip.active{background:#26213f;color:#d8d3ff;border-color:#554b8e}
+.calendarWeek{display:grid;grid-template-columns:repeat(7,1fr);font-size:9px;color:var(--muted);text-align:center;margin:3px 0 5px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.day{min-height:82px;background:#0f131a;border:1px solid #202632;border-radius:10px;padding:6px;overflow:hidden}.day.muted{opacity:.35}.day.today{border-color:var(--accent);box-shadow:0 0 0 1px #5c50bd inset}.dayNum{font-size:10px;color:#adb4c2}.event{font-size:8px;border-radius:6px;padding:4px 4px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:3px solid var(--accent);background:#201d33}.event.Reel{border-color:var(--accent2);background:#321d29}.event.Foto{border-color:var(--blue);background:#192a3b}.event.Carousel{border-color:var(--green);background:#193328}.event.Story{border-color:var(--yellow);background:#342f1d}
+.stack{margin-top:10px}.settingsCard h3{font-size:13px;margin:0 0 5px}.settingsCard p{font-size:11px;color:var(--muted);line-height:1.45}.settingsActions{display:flex;gap:8px;flex-wrap:wrap}.fileBtn{display:inline-flex;align-items:center}.fileBtn input{display:none}.danger{color:#ffd5da;border-color:#59313a;background:#25171b}.ghost{background:transparent}
+.bottomNav{position:fixed;left:0;right:0;bottom:0;z-index:4;display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:auto;padding:7px 9px calc(7px + env(safe-area-inset-bottom));background:#0e1118f2;border-top:1px solid var(--line);backdrop-filter:blur(16px)}.nav{border:0;background:transparent;color:#778092;padding:6px}.nav span{display:block;font-size:19px;line-height:18px}.nav small{font-size:9px}.nav.active{color:#c5beff}
+.overlay{position:fixed;inset:0;z-index:10;display:none;align-items:flex-end;justify-content:center;background:#000b;padding:10px}.overlay.open{display:flex}.modal{width:min(650px,100%);max-height:92svh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px 20px 14px 14px;padding:15px}.modal.small{max-width:520px}.modalHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.modalHead h2{margin:0;font-size:17px}.modal form{display:grid;gap:10px}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}label{display:grid;gap:5px;color:var(--muted);font-size:10px}input,select,textarea{width:100%;background:#0d1016;border:1px solid var(--line);color:var(--text);padding:10px;border-radius:10px;outline:none}textarea{min-height:76px;resize:vertical}.modalActions{display:flex;gap:8px;align-items:center;margin-top:4px}.spacer{flex:1}
+@media(max-width:520px){main{padding:11px}.hero{align-items:flex-start;flex-direction:column}.hero .primary{align-self:stretch}.calendar{gap:3px}.day{min-height:64px;padding:5px}.event{font-size:7px;padding:3px}.formGrid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div class="brand">
+    <div class="brandmark">IG</div>
+    <div><h1>InstaPlan</h1><span>Calendario editoriale</span></div>
+  </div>
+  <button class="round" id="addBtn" aria-label="Nuovo contenuto">+</button>
+</header>
+
+<main>
+  <section id="homeView" class="view active">
+    <div class="hero">
+      <div><div class="eyebrow">OGGI</div><h2 id="todayTitle"></h2><p id="todaySummary"></p></div>
+      <button class="primary" id="heroAdd">Nuovo post</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span>Questo mese</span><strong id="monthCount">0</strong></div>
+      <div class="stat"><span>Pronti</span><strong id="readyCount">0</strong></div>
+      <div class="stat"><span>Reel</span><strong id="reelCount">0</strong></div>
+    </div>
+
+    <div class="sectionHead"><h3>Prossimi contenuti</h3><button class="textBtn" data-nav="calendar">Vedi calendario</button></div>
+    <div id="upcoming"></div>
+
+    <div class="sectionHead"><h3>Idee rapide</h3><button class="textBtn" id="ideaBtn">+ Idea</button></div>
+    <div id="quickIdeas"></div>
+  </section>
+
+  <section id="calendarView" class="view">
+    <div class="pageHead">
+      <div>
+        <div class="eyebrow">PIANO EDITORIALE</div>
+        <h2 id="monthLabel"></h2>
+      </div>
+      <div class="navBtns"><button class="iconBtn" id="prevMonth">‹</button><button class="iconBtn" id="nextMonth">›</button></div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="chip active" data-filter="Tutti">Tutti</button>
+      <button class="chip" data-filter="Reel">Reel</button>
+      <button class="chip" data-filter="Foto">Foto</button>
+      <button class="chip" data-filter="Carousel">Carousel</button>
+      <button class="chip" data-filter="Story">Story</button>
+    </div>
+    <div class="calendarWeek"><span>LUN</span><span>MAR</span><span>MER</span><span>GIO</span><span>VEN</span><span>SAB</span><span>DOM</span></div>
+    <div id="calendar" class="calendar"></div>
+  </section>
+
+  <section id="ideasView" class="view">
+    <div class="pageHead"><div><div class="eyebrow">BANCA IDEE</div><h2>Idee contenuto</h2></div><button class="primary" id="newIdeaBtn">+ Idea</button></div>
+    <p class="muted">Salva gli spunti e trasformali in post quando vuoi.</p>
+    <div id="ideasList" class="stack"></div>
+  </section>
+
+  <section id="settingsView" class="view">
+    <div class="pageHead"><div><div class="eyebrow">DATI</div><h2>Impostazioni</h2></div></div>
+    <div class="settingsCard">
+      <h3>Backup</h3>
+      <p>Salva tutto il calendario in un file JSON oppure ripristinalo.</p>
+      <div class="settingsActions">
+        <button class="btn" id="exportBtn">Esporta backup</button>
+        <label class="btn fileBtn">Importa backup<input id="importFile" type="file" accept="application/json"></label>
+      </div>
+    </div>
+    <div class="settingsCard dangerCard">
+      <h3>Zona pericolosa</h3>
+      <p>Elimina tutti i contenuti e le idee salvate su questo dispositivo.</p>
+      <button class="btn danger" id="clearBtn">Cancella tutto</button>
+    </div>
+  </section>
+</main>
+
+<nav class="bottomNav">
+  <button class="nav active" data-nav="home"><span>⌂</span><small>Home</small></button>
+  <button class="nav" data-nav="calendar"><span>▦</span><small>Calendario</small></button>
+  <button class="nav" data-nav="ideas"><span>✦</span><small>Idee</small></button>
+  <button class="nav" data-nav="settings"><span>⚙</span><small>Altro</small></button>
+</nav>
+</div>
+
+<div id="modal" class="overlay">
+  <div class="modal">
+    <div class="modalHead"><h2 id="modalTitle">Nuovo contenuto</h2><button class="iconBtn" id="closeModal">×</button></div>
+    <form id="postForm">
+      <input type="hidden" id="editId">
+      <div class="formGrid">
+        <label>Data<input id="postDate" type="date" required></label>
+        <label>Ora<input id="postTime" type="time" value="19:00" required></label>
+      </div>
+      <div class="formGrid">
+        <label>Tipo<select id="postType"><option>Reel</option><option>Foto</option><option>Carousel</option><option>Story</option></select></label>
+        <label>Stato<select id="postStatus"><option>Idea</option><option>Da creare</option><option>Pronto</option><option>Pubblicato</option></select></label>
+      </div>
+      <label>Titolo<input id="postTitle" placeholder="Es. Il combattimento che nessuno vede" required></label>
+      <label>Hook / caption<textarea id="postDesc" placeholder="Scrivi l'idea, l'hook o la caption…"></textarea></label>
+      <label>Hashtag<input id="postTags" placeholder="#bjj #jiujitsu #mentalhealth"></label>
+      <label>Note interne<textarea id="postNotes" placeholder="Shot, musica, copertina, materiale…"></textarea></label>
+      <div class="modalActions">
+        <button type="button" class="btn danger ghost" id="deletePost">Elimina</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn" id="cancelModal">Annulla</button>
+        <button class="primary">Salva</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="ideaModal" class="overlay">
+  <div class="modal small">
+    <div class="modalHead"><h2>Nuova idea</h2><button class="iconBtn" id="closeIdea">×</button></div>
+    <form id="ideaForm">
+      <label>Idea<textarea id="ideaText" placeholder="Es. Reel: ansia prima del roll…" required></textarea></label>
+      <div class="modalActions"><div class="spacer"></div><button type="button" class="btn" id="cancelIdea">Annulla</button><button class="primary">Salva idea</button></div>
+    </form>
+  </div>
+</div>
+
+<script>
+const K='instaplan-real-v2';
+const IK=K+'-ideas';
+let posts=JSON.parse(localStorage.getItem(K)||'[]');
+let ideas=JSON.parse(localStorage.getItem(IK)||'["Il combattimento che nessuno vede","Ansia prima del roll","Tecnica della settimana"]');
+let viewDate=new Date(), filter='Tutti';
+
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayIso=iso(new Date());
+const fmtDate=s=>new Intl.DateTimeFormat('it-IT',{day:'2-digit',month:'short'}).format(new Date(s+'T12:00'));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+function persist(){localStorage.setItem(K,JSON.stringify(posts));localStorage.setItem(IK,JSON.stringify(ideas));}
+function monthPosts(){const y=viewDate.getFullYear(),m=viewDate.getMonth();return posts.filter(p=>{const d=new Date(p.date+'T12:00');return d.getFullYear()===y&&d.getMonth()===m;});}
+function typeClass(t){return t.replace(/[^a-z]/gi,'')}
+function renderHome(){
+ const d=new Date(), dayName=new Intl.DateTimeFormat('it-IT',{weekday:'long',day:'numeric',month:'long'}).format(d);
+ $('todayTitle').textContent=dayName.replace(/^./,c=>c.toUpperCase());
+ const today=posts.filter(p=>p.date===todayIso).sort((a,b)=>a.time.localeCompare(b.time));
+ $('todaySummary').textContent=today.length?`${today.length} contenut${today.length===1?'o':'i'} programmati oggi.`:'Nessun contenuto programmato oggi.';
+ const mp=monthPosts();$('monthCount').textContent=mp.length;$('readyCount').textContent=mp.filter(p=>p.status==='Pronto').length;$('reelCount').textContent=mp.filter(p=>p.type==='Reel').length;
+ const upcoming=posts.filter(p=>new Date(p.date+'T'+(p.time||'00:00'))>=new Date()).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,5);
+ $('upcoming').innerHTML=upcoming.length?upcoming.map(renderPostCard).join(''):'<div class="muted">Nessun contenuto futuro.</div>';
+ $('quickIdeas').innerHTML=ideas.slice(0,3).map((x,i)=>`<div class="ideaCard"><div class="ideaText">${esc(x)}</div><div class="ideaActions"><button onclick="ideaToPost(${i})">＋</button></div></div>`).join('');
+}
+function renderPostCard(p){
+ return `<div class="postCard" onclick="editPost('${p.id}')"><div class="postDot" style="background:${p.type==='Reel'?'var(--accent2)':p.type==='Foto'?'var(--blue)':p.type==='Carousel'?'var(--green)':'var(--yellow)'}"></div><div class="postMain"><div class="postTitle">${esc(p.title)}</div><div class="postMeta">${fmtDate(p.date)} · ${p.time} · ${p.type}</div></div><span class="status">${esc(p.status)}</span></div>`;
+}
+function renderCalendar(){
+ const y=viewDate.getFullYear(),m=viewDate.getMonth(),first=new Date(y,m,1),last=new Date(y,m+1,0);
+ $('monthLabel').textContent=new Intl.DateTimeFormat('it-IT',{month:'long',year:'numeric'}).format(viewDate).replace(/^./,c=>c.toUpperCase());
+ const start=(first.getDay()+6)%7,total=Math.ceil((start+last.getDate())/7)*7,cal=$('calendar');cal.innerHTML='';
+ for(let i=0;i<total;i++){let n=i-start+1,d=new Date(y,m,n);let inMonth=n>0&&n<=last.getDate();let el=document.createElement('div');el.className='day'+(!inMonth?' muted':'')+(iso(d)===todayIso?' today':'');let arr=posts.filter(p=>p.date===iso(d)&&(filter==='Tutti'||p.type===filter)).sort((a,b)=>a.time.localeCompare(b.time));el.innerHTML=`<div class="dayNum">${d.getDate()}</div>${arr.map(p=>`<div class="event ${typeClass(p.type)}" onclick="event.stopPropagation();editPost('${p.id}')">${esc(p.time)} · ${esc(p.title)}</div>`).join('')}`;if(inMonth)el.onclick=()=>openPost(null,iso(d));cal.appendChild(el);}
+}
+function renderIdeas(){
+ $('ideasList').innerHTML=ideas.length?ideas.map((x,i)=>`<div class="ideaCard"><div class="ideaText">${esc(x)}</div><div class="ideaActions"><button onclick="ideaToPost(${i})" title="Trasforma in post">＋</button><button onclick="deleteIdea(${i})" title="Elimina">×</button></div></div>`).join(''):'<div class="muted">Nessuna idea salvata.</div>';
+}
+function render(){renderHome();renderCalendar();renderIdeas();}
+function show(view){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(view+'View').classList.add('active');document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.nav===view));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.nav)));
+$('addBtn').onclick=()=>openPost();$('heroAdd').onclick=()=>openPost();$('newIdeaBtn').onclick=$('ideaBtn').onclick=()=>{$('ideaModal').classList.add('open');$('ideaText').value='';setTimeout(()=>$('ideaText').focus(),50)};
+$('closeModal').onclick=$('cancelModal').onclick=closePost;$('closeIdea').onclick=$('cancelIdea').onclick=()=>$('ideaModal').classList.remove('open');
+$('prevMonth').onclick=()=>{viewDate=new Date(viewDate.getFullYear(),viewDate.getMonth()-1,1);renderCalendar()};$('nextMonth').onclick=()=>{viewDate=new Date(viewDate.getFullYear(),viewDate.getMonth()+1,1);renderCalendar()};
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;renderCalendar()});
+
+function openPost(id=null,date=null){
+ $('modal').classList.add('open');$('editId').value=id||'';
+ if(id){const p=posts.find(x=>x.id===id);if(!p)return;$('modalTitle').textContent='Modifica contenuto';$('postDate').value=p.date;$('postTime').value=p.time;$('postType').value=p.type;$('postStatus').value=p.status;$('postTitle').value=p.title;$('postDesc').value=p.desc||'';$('postTags').value=p.tags||'';$('postNotes').value=p.notes||'';$('deletePost').style.display='inline-block'}
+ else{$('modalTitle').textContent='Nuovo contenuto';$('postDate').value=date||todayIso;$('postTime').value='19:00';$('postType').value='Reel';$('postStatus').value='Idea';$('postTitle').value='';$('postDesc').value='';$('postTags').value='';$('postNotes').value='';$('deletePost').style.display='none'}
+ setTimeout(()=>$('postTitle').focus(),50);
+}
+function closePost(){$('modal').classList.remove('open')}
+$('postForm').onsubmit=e=>{e.preventDefault();const id=$('editId').value||crypto.randomUUID();const p={id,date:$('postDate').value,time:$('postTime').value,type:$('postType').value,status:$('postStatus').value,title:$('postTitle').value.trim(),desc:$('postDesc').value,tags:$('postTags').value,notes:$('postNotes').value};const i=posts.findIndex(x=>x.id===id);if(i>=0)posts[i]=p;else posts.push(p);persist();closePost();render()};
+$('deletePost').onclick=()=>{const id=$('editId').value;if(!id)return;if(confirm('Eliminare questo contenuto?')){posts=posts.filter(p=>p.id!==id);persist();closePost();render()}};
+function editPost(id){openPost(id)}
+window.editPost=editPost;window.ideaToPost=i=>{openPost();$('postTitle').value=ideas[i];$('postStatus').value='Idea'};window.deleteIdea=i=>{if(confirm('Eliminare questa idea?')){ideas.splice(i,1);persist();render()}};
+$('ideaForm').onsubmit=e=>{e.preventDefault();ideas.unshift($('ideaText').value.trim());persist();$('ideaModal').classList.remove('open');render()};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),posts,ideas},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='instaplan-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
+$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!Array.isArray(obj.posts)||!Array.isArray(obj.ideas))throw Error();posts=obj.posts;ideas=obj.ideas;persist();render();alert('Backup importato.')}catch{alert('File di backup non valido.')}e.target.value=''};
+$('clearBtn').onclick=()=>{if(confirm('Vuoi cancellare TUTTO il calendario e tutte le idee?')){posts=[];ideas=[];persist();render()}};
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closePost()});$('ideaModal').addEventListener('click',e=>{if(e.target===$('ideaModal'))$('ideaModal').classList.remove('open')});
+render();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+
+</script>
+</body>
+</html>
