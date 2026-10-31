@@ -19,6 +19,7 @@ try {
   await page.locator("#postForm button.primary").click();
   await page.getByText("Test automatico InstaPlan", { exact: true }).first().waitFor();
 
+  await page.locator(".bottomNav [data-nav='ideas']").click();
   await page.locator("#newIdeaBtn").click();
   await page.locator("#ideaText").fill("Idea test automatizzato");
   await page.locator("#ideaForm button.primary").click();
