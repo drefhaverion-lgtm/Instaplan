@@ -1,0 +1,20 @@
+name: InstaPlan PWA checks
+
+on:
+  push:
+    branches: [main, setup-pwa]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate PWA configuration and JavaScript syntax
+        run: node scripts/check-pwa.mjs
