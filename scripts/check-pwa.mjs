@@ -17,7 +17,7 @@ assert.ok(manifest.icons.some((icon) => icon.src === "./icon.svg"), "Manifest mu
 assert.ok(html.includes("navigator.serviceWorker.register('./sw.js')"), "Page must register the service worker");
 assert.ok(sw.includes('caches.match("./index.html")'), "Service worker should provide an offline navigation fallback");
 
-const inlineScripts = [...html.matchAll(/<script>([\\s\\S]*?)<\\/script>/gi)];
+const inlineScripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)];
 assert.ok(inlineScripts.length > 0, "Expected at least one inline application script");
 inlineScripts.forEach((match, index) => new Script(match[1], { filename: `index-inline-${index + 1}.js` }));
 new Script(sw, { filename: "sw.js" });
